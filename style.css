@@ -253,13 +253,13 @@ h1 {
 }
 
 .clock-time {
-    font-family: 'Fredoka One', 'Pangolin', cursive;
+    font-family: 'Ariel', cursive;
     font-size: 6rem;
     font-weight: 900;
     letter-spacing: 4px;
     line-height: 1;
     animation: timeFlicker 2s ease-in-out infinite;
-    background: linear-gradient(45deg, #fff, #ffd700, #fff);
+    background: linear-gradient(45deg, #fff);
     background-size: 200% 200%;
     -webkit-background-clip: text;
     background-clip: text;
@@ -332,6 +332,14 @@ h1 {
     margin-bottom: 14px;
 }
 
+/* Avatar wrapper for positioning the status dot */
+.status-avatar-wrapper {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+}
+
 .status-avatar {
     width: 48px;
     height: 48px;
@@ -340,7 +348,6 @@ h1 {
     border: 2px solid rgba(255, 255, 255, 0.6);
     transition: all 0.3s ease;
     animation: statusAvatarFloat 3s ease-in-out infinite;
-    position: relative;
 }
 
 .status-avatar:hover {
@@ -378,17 +385,33 @@ h1 {
     gap: 5px;
 }
 
+/* Status dot on avatar (bottom-right corner like Discord) */
 .status-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #747f8d;
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    position: absolute;
+    bottom: 0;
+    right: -2px;
+    z-index: 2;
+    transition: background-color 0.3s ease;
+}
+
+/* Inline dot for status text */
+.status-dot-inline {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #43b581;
+    background: #747f8d;
     display: inline-block;
     animation: statusDotPulse 2s ease-in-out infinite;
     position: relative;
+    transition: background-color 0.3s ease;
 }
 
-.status-dot::after {
+.status-dot-inline::after {
     content: '';
     position: absolute;
     top: -2px;
@@ -396,9 +419,47 @@ h1 {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: #43b581;
+    background: inherit;
     opacity: 0.3;
     animation: statusDotRing 2s ease-in-out infinite;
+}
+
+/* Status colors */
+.status-online, .status-dot.status-online {
+    background: #43b581 !important;
+}
+.status-idle, .status-dot.status-idle {
+    background: #faa61a !important;
+}
+.status-dnd, .status-dot.status-dnd {
+    background: #f04747 !important;
+}
+.status-offline, .status-dot.status-offline {
+    background: #747f8d !important;
+}
+
+/* Widget glow based on Discord status */
+.widget-status[data-status="online"] {
+    border: 1.5px solid rgba(67, 181, 129, 0.4);
+    box-shadow: 0 8px 32px rgba(67, 181, 129, 0.15);
+}
+.widget-status[data-status="idle"] {
+    border: 1.5px solid rgba(250, 166, 26, 0.4);
+    box-shadow: 0 8px 32px rgba(250, 166, 26, 0.15);
+}
+.widget-status[data-status="dnd"] {
+    border: 1.5px solid rgba(240, 71, 71, 0.4);
+    box-shadow: 0 8px 32px rgba(240, 71, 71, 0.15);
+}
+.widget-status[data-status="offline"] {
+    border: 1.5px solid rgba(116, 127, 141, 0.3);
+    box-shadow: 0 8px 32px rgba(116, 127, 141, 0.1);
+}
+
+/* Offline animation: no pulse */
+.status-dot-inline.status-offline::after {
+    animation: none;
+    opacity: 0;
 }
 
 @keyframes statusDotPulse {
@@ -431,6 +492,25 @@ h1 {
     font-size: 1.1rem;
     color: #333;
     padding-left: 4px;
+}
+
+.status-message small {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.status-message i {
+    margin-right: 4px;
+    opacity: 0.7;
+}
+
+.status-custom-text {
+    font-size: 0.95rem;
+    color: #555;
+    padding-left: 4px;
+    margin-top: 6px;
+    font-style: italic;
+    opacity: 0.85;
 }
 
 /* Widget ảnh — chiếm 2 cột */
