@@ -1,0 +1,730 @@
+/* Xóa các khoảng trắng mặc định của trình duyệt */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    /* Cài đặt ảnh nền */
+    background-image: url('https://animesher.com/orig/2/208/2080/20809/animesher.com_scenery-starry-sky-light-2080940.gif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+    font-family: 'Pangolin', cursive;
+    color: #111;
+}
+
+/* ========================
+   PHẦN 1: TRANG GIỚI THIỆU
+   ======================== */
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Phần khung chứa thông tin */
+.profile-container {
+    text-align: center;
+    max-width: 800px;
+    padding: 20px;
+    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.9);
+}
+
+/* Ảnh đại diện */
+.avatar {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    animation: avatarGlow 3s ease-in-out infinite alternate;
+    position: relative;
+    overflow: hidden;
+}
+
+.avatar:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    border-color: #ff6b9d;
+}
+
+@keyframes avatarGlow {
+    0% {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 0 rgba(255, 107, 157, 0.4);
+    }
+    100% {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 20px 5px rgba(255, 107, 157, 0.6);
+    }
+}
+
+/* Tiêu đề (Tên) */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Các đoạn văn bản giới thiệu */
+.description p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+/* Khối chứa mũi tên chỉ xuống */
+.scroll-down {
+    position: absolute;
+    bottom: 30px;
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    animation: bounce 2s infinite;
+    cursor: pointer;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+/* ========================
+   PHẦN 2: TRANG WIDGET
+   ======================== */
+.page-widgets {
+    padding: 60px 20px;
+    min-height: 100vh;
+    justify-content: flex-start;
+    gap: 24px;
+}
+
+/* ----- Widget chung ----- */
+.widget {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    animation: widgetFloat 6s ease-in-out infinite;
+}
+
+.widget:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.2);
+    animation-play-state: paused;
+}
+
+/* Floating animation cơ bản */
+@keyframes widgetFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-8px) rotate(0.5deg);
+    }
+    50% {
+        transform: translateY(-4px) rotate(0deg);
+    }
+    75% {
+        transform: translateY(-12px) rotate(-0.5deg);
+    }
+}
+
+/* ----- Widget đồng hồ / banner ----- */
+.widget-clock {
+    width: 100%;
+    max-width: 900px;
+    height: 280px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    animation: clockFloat 8s ease-in-out infinite;
+}
+
+@keyframes clockFloat {
+    0%, 100% {
+        transform: translateY(0px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    }
+    25% {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+    50% {
+        transform: translateY(-10px);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+    }
+    75% {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 36px rgba(0, 0, 0, 0.14);
+    }
+}
+
+.clock-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://media1.tenor.com/m/yeIw0Y_gcKMAAAAd/carlotta-wuwa.gif');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.7) saturate(1.2);
+    animation: clockBackgroundShift 20s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes clockBackgroundShift {
+    0%, 100% { 
+        background-position: center; 
+        transform: scale(1);
+    }
+    25% { 
+        background-position: center top; 
+        transform: scale(1.05);
+    }
+    50% { 
+        background-position: center bottom;
+        transform: scale(1.02);
+    }
+    75% { 
+        background-position: center;
+        transform: scale(1.03);
+    }
+}
+
+.widget-clock:hover .clock-background {
+    filter: brightness(0.8) saturate(1.4);
+    transform: scale(1.08);
+}
+
+.widget-clock:hover .clock-overlay {
+    transform: scale(1.05);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.clock-overlay {
+    text-align: center;
+    color: #fff;
+    text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.7);
+    position: relative;
+    z-index: 2;
+    animation: clockPulse 4s ease-in-out infinite;
+    backdrop-filter: blur(2px);
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+@keyframes clockPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.02);
+        opacity: 0.95;
+    }
+}
+
+.clock-time {
+    font-family: 'Fredoka One', 'Pangolin', cursive;
+    font-size: 6rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    line-height: 1;
+    animation: timeFlicker 2s ease-in-out infinite;
+    background: linear-gradient(45deg, #fff, #ffd700, #fff);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: timeShimmer 3s ease-in-out infinite;
+}
+
+@keyframes timeShimmer {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.clock-day {
+    font-family: 'Pangolin', cursive;
+    font-size: 2.8rem;
+    font-style: italic;
+    margin-top: -8px;
+}
+
+.clock-date {
+    font-family: 'Pangolin', cursive;
+    font-size: 2rem;
+    margin-top: 4px;
+    letter-spacing: 2px;
+}
+
+/* ----- Lưới Widget ----- */
+.widgets-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Widget trạng thái — chiếm 2 cột */
+.widget-status {
+    grid-column: span 2;
+    padding: 20px 24px;
+    animation: widgetFloatDelayed 5s ease-in-out infinite;
+    animation-delay: -1s;
+}
+
+@keyframes widgetFloatDelayed {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    30% {
+        transform: translateY(-6px) rotate(0.3deg);
+    }
+    60% {
+        transform: translateY(-10px) rotate(-0.3deg);
+    }
+    80% {
+        transform: translateY(-2px) rotate(0.2deg);
+    }
+}
+
+.status-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.status-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    transition: all 0.3s ease;
+    animation: statusAvatarFloat 3s ease-in-out infinite;
+    position: relative;
+}
+
+.status-avatar:hover {
+    transform: scale(1.15) rotate(-5deg);
+    border-color: #43b581;
+    box-shadow: 0 4px 15px rgba(67, 181, 129, 0.4);
+}
+
+@keyframes statusAvatarFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+.status-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.status-name {
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.status-state {
+    font-size: 0.85rem;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #43b581;
+    display: inline-block;
+    animation: statusDotPulse 2s ease-in-out infinite;
+    position: relative;
+}
+
+.status-dot::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #43b581;
+    opacity: 0.3;
+    animation: statusDotRing 2s ease-in-out infinite;
+}
+
+@keyframes statusDotPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+@keyframes statusDotRing {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.2;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+.status-message {
+    font-size: 1.1rem;
+    color: #333;
+    padding-left: 4px;
+}
+
+/* Widget ảnh — chiếm 2 cột */
+.widget-image {
+    grid-column: span 2;
+    height: 200px;
+    animation: widgetImageFloat 7s ease-in-out infinite;
+    animation-delay: -2s;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes widgetImageFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    20% {
+        transform: translateY(-5px) rotate(0.2deg);
+    }
+    40% {
+        transform: translateY(-8px) rotate(-0.1deg);
+    }
+    60% {
+        transform: translateY(-3px) rotate(0.3deg);
+    }
+    80% {
+        transform: translateY(-6px) rotate(-0.2deg);
+    }
+}
+
+.widget-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 20px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    animation: imageSubmerge 8s ease-in-out infinite;
+}
+
+/* Hiệu ứng chìm đặc biệt cho ảnh */
+@keyframes imageSubmerge {
+    0%, 100% {
+        transform: scale(1) translateY(0px);
+        filter: brightness(1) saturate(1) blur(0px);
+    }
+    25% {
+        transform: scale(1.02) translateY(3px);
+        filter: brightness(0.95) saturate(1.1) blur(0.5px);
+    }
+    50% {
+        transform: scale(0.98) translateY(-2px);
+        filter: brightness(1.05) saturate(0.9) blur(0px);
+    }
+    75% {
+        transform: scale(1.01) translateY(1px);
+        filter: brightness(0.98) saturate(1.05) blur(0.3px);
+    }
+}
+
+.widget-image:hover img {
+    transform: scale(1.08) rotate(2deg) translateY(-5px);
+    filter: brightness(1.1) saturate(1.2) contrast(1.1);
+    animation-play-state: paused;
+}
+
+/* Hiệu ứng overlay chìm */
+.widget-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(173, 216, 230, 0.1) 0%, 
+        rgba(135, 206, 235, 0.15) 25%,
+        rgba(176, 196, 222, 0.1) 50%,
+        rgba(173, 216, 230, 0.05) 100%);
+    border-radius: 20px;
+    opacity: 0;
+    animation: overlayWave 6s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes overlayWave {
+    0%, 100% {
+        opacity: 0;
+        transform: translateY(0px);
+    }
+    50% {
+        opacity: 0.6;
+        transform: translateY(-2px);
+    }
+}
+
+.widget-image:hover::before {
+    opacity: 0.8;
+    animation-play-state: paused;
+}
+
+/* ----- Widget link ----- */
+.widget-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 24px 16px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-family: 'Pangolin', cursive;
+    cursor: pointer;
+    animation: widgetLinkFloat 4s ease-in-out infinite;
+}
+
+/* Floating khác nhau cho từng link widget */
+.widget-discord {
+    animation-delay: -0.5s;
+}
+
+.widget-facebook {
+    animation-delay: -1.5s;
+}
+
+@keyframes widgetLinkFloat {
+    0%, 100% {
+        transform: translateY(0px) scale(1);
+    }
+    25% {
+        transform: translateY(-4px) scale(1.01);
+    }
+    50% {
+        transform: translateY(-7px) scale(1);
+    }
+    75% {
+        transform: translateY(-2px) scale(1.005);
+    }
+}
+
+.widget-link i {
+    font-size: 2rem;
+}
+
+.widget-link span {
+    font-size: 0.95rem;
+}
+
+/* Màu nền cho từng platform */
+.widget-youtube {
+    background: linear-gradient(135deg, #ff0000cc, #cc0000dd) !important;
+}
+
+.widget-discord {
+    background: linear-gradient(135deg, #5865F2cc, #4752C4dd) !important;
+}
+
+.widget-twitter {
+    background: linear-gradient(135deg, #1a1a2ecc, #000000dd) !important;
+}
+
+.widget-facebook {
+    background: linear-gradient(135deg, #1877F2cc, #1565C0dd) !important;
+}
+
+.widget-instagram {
+    background: linear-gradient(135deg, #f09433cc, #e6683ccc, #dc2743cc, #cc2366cc, #bc1888dd) !important;
+}
+
+.widget-steam {
+    background: linear-gradient(135deg, #1b2838cc, #2a475edd) !important;
+}
+
+.widget-link:hover {
+    transform: translateY(-10px) scale(1.08) rotate(2deg);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.3);
+    animation-play-state: paused;
+}
+
+/* ========================
+   RESPONSIVE
+   ======================== */
+@media (max-width: 768px) {
+    .widgets-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .widget-status,
+    .widget-image {
+        grid-column: span 2;
+    }
+
+    .clock-time {
+        font-size: 4rem;
+    }
+
+    .clock-day {
+        font-size: 2rem;
+    }
+
+    .clock-date {
+        font-size: 1.4rem;
+    }
+
+    .widget-clock {
+        height: 200px;
+        animation: clockFloatMobile 6s ease-in-out infinite;
+    }
+    
+    /* Mobile floating ít cường độ hơn */
+    .widget {
+        animation: widgetFloatMobile 5s ease-in-out infinite;
+    }
+}
+
+@keyframes clockFloatMobile {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+@keyframes widgetFloatMobile {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+@media (max-width: 480px) {
+    .widgets-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .widget-link {
+        padding: 18px 12px;
+        animation: widgetFloatSmall 4s ease-in-out infinite;
+    }
+
+    .widget-link i {
+        font-size: 1.6rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .description p {
+        font-size: 1rem;
+    }
+    
+    /* Hạn chế animation trên màn hình nhỏ */
+    .widget-clock {
+        animation: none;
+    }
+    
+    .avatar {
+        animation-duration: 4s;
+    }
+}
+
+@keyframes widgetFloatSmall {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-2px);
+    }
+}
+
+/* Hiệu ứng sóng cho toàn bộ trang */
+.page-widgets {
+    animation: pageWave 12s ease-in-out infinite;
+}
+
+@keyframes pageWave {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    25% {
+        transform: translateY(2px);
+    }
+    50% {
+        transform: translateY(0px);
+    }
+    75% {
+        transform: translateY(-2px);
+    }
+}

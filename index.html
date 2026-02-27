@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeiMei.dev</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&family=Fredoka+One&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===== PHẦN 1: TRANG GIỚI THIỆU ===== -->
+    <section class="page page-intro">
+        <div class="profile-container">
+            <img src="https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/483884036_665031045882842_6935605271122023384_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=53a332&_nc_eui2=AeFWF-SEN_3pvTyz4BSqNJlPq--org89OEmr76iuDz04SZBEIGwBknXSvXNMMDsM6X3reIGg9V9TLZooItsCK5rh&_nc_ohc=4YChJYZEzgAQ7kNvwFkJ55I&_nc_oc=AdnQSoyMrztE74UjcdmEUpg2GyHTfh4BlspTgjtbvEe2_GMk2IgIdMu5R17ydwRdLRE&_nc_zt=23&_nc_ht=scontent.fhan2-4.fna&_nc_gid=oUhTVR4Ifo-RYsnC93PR6A&oh=00_Afs5UKklTkKtFws0nEEoHL_TDE4jETsowbqwS2StADNQNw&oe=69A730DD" alt="my avt" class="avatar">
+            
+            <h1>Hoshina Meito 🌷</h1>
+            
+            <div class="description">
+                <p>I'm Hoshina Meito (you can call me Meimei), a Gamer ( cosplayer sometime (～￣▽￣)～ ) who loves anime, manga, novel :3</p>
+                <p>Here are a few of my favorite books: Letters to You, The Little Paris Bookshop, The Unwomanly Face of War, and Only Love Is Real</p>
+                <p>I currently reside and work in Japan. I can speak a little English (not good at English(┬┬﹏┬┬)) and Japanese also, my mother language is Vietnamese (❁´◡`❁)</p>
+                <p>Thank you for reading! Here is a cookie for you :3 meow~ 🍪</p>
+            </div>
+        </div>
+
+        <div class="scroll-down" onclick="document.querySelector('.page-widgets').scrollIntoView({behavior:'smooth'})">
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- ===== PHẦN 2: TRANG WIDGET LINKS ===== -->
+    <section class="page page-widgets">
+        
+        <!-- Widget đồng hồ + banner -->
+        <div class="widget widget-clock">
+            <div class="clock-background"></div>
+            <div class="clock-overlay">
+                <div class="clock-time" id="clock-time">18:04</div>
+                <div class="clock-day" id="clock-day">Friday</div>
+                <div class="clock-date" id="clock-date">27, Feb</div>
+            </div>
+        </div>
+
+        <!-- Lưới widget -->
+        <div class="widgets-grid">
+
+            <div class="widget widget-status" style="background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('https://media1.tenor.com/m/EHmYNbeENZ8AAAAd/carlotta-carlotta-tea.gif'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <div class="status-header">
+        <img src="https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/483884036_665031045882842_6935605271122023384_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=53a332&_nc_eui2=AeFWF-SEN_3pvTyz4BSqNJlPq--org89OEmr76iuDz04SZBEIGwBknXSvXNMMDsM6X3reIGg9V9TLZooItsCK5rh&_nc_ohc=4YChJYZEzgAQ7kNvwFkJ55I&_nc_oc=AdnQSoyMrztE74UjcdmEUpg2GyHTfh4BlspTgjtbvEe2_GMk2IgIdMu5R17ydwRdLRE&_nc_zt=23&_nc_ht=scontent.fhan2-4.fna&_nc_gid=Ad9PmMVbJvR3LIVwnjiTPQ&oh=00_AfttGDoj-wp1ZvC2CeNfV4yl4M1pBfchtE1ohcaU_n5ysQ&oe=69A7691D" alt="avatar" class="status-avatar">
+        <div class="status-info">
+            <span class="status-name">MEITO</span>
+            <span class="status-state">
+                <span class="status-dot"></span> online
+            </span>
+        </div>
+    </div>
+    <p class="status-message">Tell me a heart warming story</p>
+</div>
+
+            <!-- Widget ảnh ngẫu nhiên -->
+            <div class="widget widget-image">
+                <img src="https://media1.tenor.com/m/6lISZEeGETcAAAAd/carlotta-wuwa.gif" alt="aesthetic gif">
+            </div>
+
+            <!-- Widget link YouTube -->
+            <!--<a href="https://youtube.com/@YOUR_CHANNEL" target="_blank" class="widget widget-link widget-youtube">
+                <i class="fa-brands fa-youtube"></i>
+                <span>YouTube</span>
+            </a>-->
+
+            <!-- Widget link Discord -->
+            <a href="https://discord.gg/Y7PNc8ev" target="_blank" class="widget widget-link widget-discord">
+                <i class="fa-brands fa-discord"></i>
+                <span>Discord</span>
+            </a>
+
+            <!-- Widget link Twitter / X -->
+            <!--<a href="https://twitter.com/YOUR_HANDLE" target="_blank" class="widget widget-link widget-twitter">
+                <i class="fa-brands fa-x-twitter"></i>
+                <span>Twitter / X</span>
+            </a>-->
+
+            <!-- Widget link Facebook -->
+            <a href="https://www.facebook.com/hoshino.meito.2025/" target="_blank" class="widget widget-link widget-facebook">
+                <i class="fa-brands fa-facebook"></i>
+                <span>Facebook</span>
+            </a>
+
+            <!-- Widget link Instagram -->
+            <!--<a href="https://instagram.com/YOUR_PROFILE" target="_blank" class="widget widget-link widget-instagram">
+                <i class="fa-brands fa-instagram"></i>
+                <span>Instagram</span>
+            </a>-->
+
+            <!-- Widget link Steam -->
+            <!--<a href="https://steamcommunity.com/id/YOUR_ID" target="_blank" class="widget widget-link widget-steam">
+                <i class="fa-brands fa-steam"></i>
+                <span>Steam</span>
+            </a>-->
+
+        </div>
+    </section>
+
+    <script>
+        // Cập nhật đồng hồ real-time
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+            const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+            document.getElementById('clock-time').textContent = hours + ':' + minutes;
+            document.getElementById('clock-day').textContent = days[now.getDay()];
+            document.getElementById('clock-date').textContent = now.getDate() + ', ' + months[now.getMonth()];
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+
+</body>
+</html>
