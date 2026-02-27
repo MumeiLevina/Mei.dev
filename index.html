@@ -51,17 +51,21 @@
         <!-- Lưới widget -->
         <div class="widgets-grid">
 
-            <div class="widget widget-status" style="background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('https://media1.tenor.com/m/EHmYNbeENZ8AAAAd/carlotta-carlotta-tea.gif'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+            <div class="widget widget-status" id="discord-status-widget" style="background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('https://media1.tenor.com/m/EHmYNbeENZ8AAAAd/carlotta-carlotta-tea.gif'); background-size: cover; background-position: center; background-repeat: no-repeat;">
     <div class="status-header">
-        <img src="https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/483884036_665031045882842_6935605271122023384_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=53a332&_nc_eui2=AeFWF-SEN_3pvTyz4BSqNJlPq--org89OEmr76iuDz04SZBEIGwBknXSvXNMMDsM6X3reIGg9V9TLZooItsCK5rh&_nc_ohc=4YChJYZEzgAQ7kNvwFkJ55I&_nc_oc=AdnQSoyMrztE74UjcdmEUpg2GyHTfh4BlspTgjtbvEe2_GMk2IgIdMu5R17ydwRdLRE&_nc_zt=23&_nc_ht=scontent.fhan2-4.fna&_nc_gid=Ad9PmMVbJvR3LIVwnjiTPQ&oh=00_AfttGDoj-wp1ZvC2CeNfV4yl4M1pBfchtE1ohcaU_n5ysQ&oe=69A7691D" alt="avatar" class="status-avatar">
+        <div class="status-avatar-wrapper">
+            <img id="discord-avatar" src="https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/483884036_665031045882842_6935605271122023384_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=53a332&_nc_eui2=AeFWF-SEN_3pvTyz4BSqNJlPq--org89OEmr76iuDz04SZBEIGwBknXSvXNMMDsM6X3reIGg9V9TLZooItsCK5rh&_nc_ohc=4YChJYZEzgAQ7kNvwFkJ55I&_nc_oc=AdnQSoyMrztE74UjcdmEUpg2GyHTfh4BlspTgjtbvEe2_GMk2IgIdMu5R17ydwRdLRE&_nc_zt=23&_nc_ht=scontent.fhan2-4.fna&_nc_gid=Ad9PmMVbJvR3LIVwnjiTPQ&oh=00_AfttGDoj-wp1ZvC2CeNfV4yl4M1pBfchtE1ohcaU_n5ysQ&oe=69A7691D" alt="avatar" class="status-avatar">
+            <span class="status-dot" id="discord-dot"></span>
+        </div>
         <div class="status-info">
-            <span class="status-name">MEITO</span>
-            <span class="status-state">
-                <span class="status-dot"></span> online
+            <span class="status-name" id="discord-name">MEITO</span>
+            <span class="status-state" id="discord-state">
+                <i class="fa-solid fa-spinner fa-spin" style="font-size: 0.7rem;"></i> loading...
             </span>
         </div>
     </div>
-    <p class="status-message">Tell me a heart warming story</p>
+    <p class="status-message" id="discord-activity">...</p>
+    <p class="status-custom-text">Tell me a heart warming story</p>
 </div>
 
             <!-- Widget ảnh ngẫu nhiên -->
@@ -123,6 +127,117 @@
         }
         updateClock();
         setInterval(updateClock, 1000);
+
+        // ===== LANYARD DISCORD PRESENCE =====
+        const DISCORD_USER_ID = '1239181166188429364';
+
+        const statusLabels = {
+            online: 'Online',
+            idle: 'Idle',
+            dnd: 'Do Not Disturb',
+            offline: 'Offline'
+        };
+
+        function updateDiscordPresence(data) {
+            const dotEl = document.getElementById('discord-dot');
+            const stateEl = document.getElementById('discord-state');
+            const activityEl = document.getElementById('discord-activity');
+            const avatarEl = document.getElementById('discord-avatar');
+            const nameEl = document.getElementById('discord-name');
+            const widgetEl = document.getElementById('discord-status-widget');
+
+            // Update avatar from Discord
+            if (data.discord_user) {
+                const user = data.discord_user;
+                if (user.avatar) {
+                    avatarEl.src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=128`;
+                }
+                nameEl.textContent = user.display_name || user.global_name || user.username;
+            }
+
+            // Update status dot & label
+            const status = data.discord_status || 'offline';
+            dotEl.className = 'status-dot status-' + status;
+            stateEl.innerHTML = '<span class="status-dot-inline status-' + status + '"></span> ' + statusLabels[status];
+
+            // Update widget border glow based on status
+            widgetEl.setAttribute('data-status', status);
+
+            // Update activity
+            if (data.activities && data.activities.length > 0) {
+                const activity = data.activities.find(a => a.type !== 4) || data.activities[0];
+                if (activity.type === 4) {
+                    // Custom status
+                    activityEl.textContent = activity.state || 'No status message';
+                } else if (activity.type === 0) {
+                    activityEl.innerHTML = '<i class="fa-solid fa-gamepad"></i> Playing <strong>' + activity.name + '</strong>';
+                    if (activity.details) activityEl.innerHTML += '<br><small>' + activity.details + '</small>';
+                } else if (activity.type === 2) {
+                    activityEl.innerHTML = '<i class="fa-solid fa-music"></i> Listening to <strong>' + activity.name + '</strong>';
+                    if (activity.details) activityEl.innerHTML += ' — ' + activity.details;
+                } else if (activity.type === 1) {
+                    activityEl.innerHTML = '<i class="fa-solid fa-tower-broadcast"></i> Streaming <strong>' + activity.name + '</strong>';
+                } else if (activity.type === 3) {
+                    activityEl.innerHTML = '<i class="fa-solid fa-tv"></i> Watching <strong>' + activity.name + '</strong>';
+                } else if (activity.type === 5) {
+                    activityEl.innerHTML = '<i class="fa-solid fa-trophy"></i> Competing in <strong>' + activity.name + '</strong>';
+                } else {
+                    activityEl.textContent = activity.state || activity.name || 'No activity';
+                }
+            } else if (data.activities && data.activities.length === 0) {
+                if (status === 'offline') {
+                    activityEl.textContent = 'Currently offline';
+                } else {
+                    activityEl.textContent = 'Just chilling~ ☕';
+                }
+            }
+        }
+
+        // Use WebSocket for real-time updates
+        function connectLanyard() {
+            const ws = new WebSocket('wss://api.lanyard.rest/socket');
+
+            ws.onmessage = function(event) {
+                const msg = JSON.parse(event.data);
+
+                if (msg.op === 1) {
+                    // Hello — send subscribe
+                    ws.send(JSON.stringify({
+                        op: 2,
+                        d: { subscribe_to_id: DISCORD_USER_ID }
+                    }));
+
+                    // Heartbeat
+                    setInterval(() => {
+                        ws.send(JSON.stringify({ op: 3 }));
+                    }, msg.d.heartbeat_interval);
+                }
+
+                if (msg.op === 0) {
+                    // INIT_STATE or PRESENCE_UPDATE
+                    updateDiscordPresence(msg.d);
+                }
+            };
+
+            ws.onclose = function() {
+                // Reconnect after 5 seconds
+                setTimeout(connectLanyard, 5000);
+            };
+
+            ws.onerror = function() {
+                ws.close();
+            };
+        }
+
+        // Start with REST API for fast initial load, then switch to WebSocket
+        fetch('https://api.lanyard.rest/v1/users/' + DISCORD_USER_ID)
+            .then(r => r.json())
+            .then(res => {
+                if (res.success) updateDiscordPresence(res.data);
+            })
+            .catch(() => {});
+
+        connectLanyard();
     </script>
 
 </body>
