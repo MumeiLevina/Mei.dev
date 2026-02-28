@@ -1,3 +1,4 @@
+
 /* Xóa các khoảng trắng mặc định của trình duyệt */
 * {
     margin: 0;
@@ -688,10 +689,106 @@ h1 {
     background: linear-gradient(135deg, #1b2838cc, #2a475edd) !important;
 }
 
+.widget-link {
+    position: relative;
+}
+
 .widget-link:hover {
     transform: translateY(-10px) scale(1.08) rotate(2deg);
     box-shadow: 0 18px 50px rgba(0, 0, 0, 0.3);
     animation-play-state: paused;
+}
+
+/* ----- Widget con (sub-widget) khi hover ----- */
+.widget-sub {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+    pointer-events: none;
+}
+
+.widget-link:hover .widget-sub {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+}
+
+.widget-sub-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #333;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: 'Pangolin', cursive;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.25s ease;
+}
+
+.widget-sub-btn:hover {
+    background: #fff;
+    transform: scale(1.08);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+}
+
+.widget-sub-btn i {
+    font-size: 0.75rem;
+}
+
+/* Discord sub-btn hover color */
+.widget-discord .widget-sub-btn:hover {
+    color: #5865F2;
+    border-color: rgba(88, 101, 242, 0.4);
+    box-shadow: 0 6px 24px rgba(88, 101, 242, 0.25);
+}
+
+/* Facebook sub-btn hover color */
+.widget-facebook .widget-sub-btn:hover {
+    color: #1877F2;
+    border-color: rgba(24, 119, 242, 0.4);
+    box-shadow: 0 6px 24px rgba(24, 119, 242, 0.25);
+}
+
+/* ----- Text box trên ảnh ----- */
+.image-textbox {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 14px 18px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.0) 100%);
+    border-radius: 0 0 20px 20px;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.image-textbox p {
+    color: #fff;
+    font-size: 0.95rem;
+    font-family: 'Pangolin', cursive;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin: 0;
+    letter-spacing: 0.3px;
+}
+
+.widget-image:hover .image-textbox {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.0) 100%);
 }
 
 /* ========================
