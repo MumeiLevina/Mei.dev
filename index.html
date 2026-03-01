@@ -181,7 +181,7 @@
                 const activity = data.activities.find(a => a.type !== 4) || data.activities[0];
                 if (activity.type === 4) {
                     // Custom status
-                    activityEl.textContent = activity.state || 'No status message';
+                    activityEl.textContent = activity.state || "I'm chilling right now meow:3~🍡'";
                 } else if (activity.type === 0) {
                     activityEl.innerHTML = '<i class="fa-solid fa-gamepad"></i> Playing <strong>' + activity.name + '</strong>';
                     if (activity.details) activityEl.innerHTML += '<br><small>' + activity.details + '</small>';
