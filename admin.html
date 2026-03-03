@@ -391,9 +391,7 @@
         const auth = firebase.auth();
 
         // ===== ADMIN PASSWORD =====
-        // 🔧 ĐẶT EMAIL VÀ MẬT KHẨU FIREBASE AUTH CỦA BẠN
         const ADMIN_EMAIL = "xinloi476@gmail.com";  // Email bạn đăng ký trên Firebase Auth
-        const DEFAULT_PASSWORD = "123456";
 
         const loginForm = document.getElementById('login-form');
         const loginError = document.getElementById('login-error');
@@ -404,19 +402,15 @@
         auth.onAuthStateChanged((user) => {
             if (user && user.email === ADMIN_EMAIL) {
                 showDashboard();
+            } else {
+                loginScreen.style.display = 'flex';
+                adminDashboard.style.display = 'none';
             }
         });
 
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const password = document.getElementById('admin-password').value;
-
-            // Nếu dùng mật khẩu mặc định thì đăng nhập demo
-            if (password === DEFAULT_PASSWORD) {
-                loginError.textContent = '';
-                showDashboard();
-                return;
-            }
 
             try {
                 await auth.signInWithEmailAndPassword(ADMIN_EMAIL, password);
