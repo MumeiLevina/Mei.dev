@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeiMei - Message Admin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="https://scontent.fhan20-1.fna.fbcdn.net/v/t39.30808-6/505596315_729592579426688_4576269832093091594_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHlWvYxDIKy9iJd06w3HFtOUiVsBGuuQtpSJWwEa65C2g2uvY_VhJoLBI7TIMYjCpxta5EIznBQTUEi4dSH_CvQ&_nc_ohc=bIM6iFGKm5AQ7kNvwF09_bI&_nc_oc=AdlasW5T5P5WGTzjsM0Xfeja4qRJbE4jopLZTukchpTosg8ppaPVYD_1TaPDa62KrQQ&_nc_zt=23&_nc_ht=scontent.fhan20-1.fna&_nc_gid=jfKLuvXl5XZj4lbm39b0PQ&_nc_ss=8&oh=00_Afsugp1H18jglBJ_XkS1a-Pi0wmK3lkg0zqW4mCcrE7FFA&oe=69A7E5FB">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pangolin', cursive;
+            background-image: url('https://animesher.com/orig/2/208/2080/20809/animesher.com_scenery-starry-sky-light-2080940.gif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* ===== LOGIN SCREEN ===== */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .login-box {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 24px;
+            border: 1.5px solid rgba(255, 182, 193, 0.4);
+            box-shadow: 0 8px 40px rgba(255, 107, 157, 0.15);
+            padding: 40px 36px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .login-box h2 {
+            font-size: 1.8rem;
+            color: #e75480;
+            margin-bottom: 8px;
+        }
+
+        .login-box p {
+            font-size: 0.95rem;
+            color: #888;
+            margin-bottom: 24px;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid rgba(255, 182, 193, 0.4);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.7);
+            font-family: 'Pangolin', cursive;
+            font-size: 1rem;
+            color: #333;
+            outline: none;
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+        }
+
+        .login-input:focus {
+            border-color: #ff6b9d;
+            box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.15);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #ff6b9d, #e75480);
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            font-family: 'Pangolin', cursive;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.45);
+        }
+
+        .login-error {
+            color: #f04747;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            min-height: 20px;
+        }
+
+        /* ===== ADMIN DASHBOARD ===== */
+        .admin-container {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .admin-header {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            border: 1.5px solid rgba(255, 182, 193, 0.4);
+            box-shadow: 0 8px 32px rgba(255, 107, 157, 0.1);
+            padding: 24px 28px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .admin-header h1 {
+            font-size: 1.6rem;
+            color: #e75480;
+        }
+
+        .admin-header .admin-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .admin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border: 2px solid rgba(255, 182, 193, 0.5);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.6);
+            color: #e75480;
+            font-family: 'Pangolin', cursive;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .admin-btn:hover {
+            background: #ff6b9d;
+            color: #fff;
+            border-color: #ff6b9d;
+            transform: translateY(-2px);
+        }
+
+        .admin-btn.danger {
+            border-color: rgba(240, 71, 71, 0.4);
+            color: #f04747;
+        }
+
+        .admin-btn.danger:hover {
+            background: #f04747;
+            color: #fff;
+            border-color: #f04747;
+        }
+
+        .msg-count {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 16px;
+            padding-left: 4px;
+        }
+
+        /* ===== MESSAGE CARDS ===== */
+        .messages-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .msg-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 18px;
+            border: 1.5px solid rgba(255, 182, 193, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            padding: 20px 24px;
+            transition: all 0.3s ease;
+            animation: cardSlideIn 0.4s ease-out;
+        }
+
+        .msg-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 107, 157, 0.15);
+            border-color: rgba(255, 107, 157, 0.5);
+        }
+
+        .msg-card.unread {
+            border-left: 4px solid #ff6b9d;
+            background: rgba(255, 240, 245, 0.7);
+        }
+
+        @keyframes cardSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .msg-content {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 12px;
+            word-wrap: break-word;
+        }
+
+        .msg-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .msg-time {
+            font-size: 0.8rem;
+            color: #aaa;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .msg-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .msg-action-btn {
+            padding: 4px 10px;
+            border: 1.5px solid rgba(200, 200, 200, 0.5);
+            border-radius: 8px;
+            background: transparent;
+            color: #999;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Pangolin', cursive;
+        }
+
+        .msg-action-btn:hover {
+            color: #f04747;
+            border-color: rgba(240, 71, 71, 0.4);
+            background: rgba(240, 71, 71, 0.08);
+        }
+
+        .msg-action-btn.mark-read:hover {
+            color: #43b581;
+            border-color: rgba(67, 181, 129, 0.4);
+            background: rgba(67, 181, 129, 0.08);
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #bbb;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .empty-state p {
+            font-size: 1.1rem;
+        }
+
+        /* Loading */
+        .loading-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #e75480;
+        }
+
+        .loading-state i {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .login-box {
+                padding: 28px 20px;
+            }
+
+            .admin-header {
+                padding: 18px 16px;
+            }
+
+            .admin-header h1 {
+                font-size: 1.3rem;
+            }
+
+            .msg-card {
+                padding: 16px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== LOGIN SCREEN ===== -->
+    <div class="login-container" id="login-screen">
+        <div class="login-box">
+            <h2> Meimei Admin</h2>
+            <p>nhap mat khau : </p>
+            <form id="login-form">
+                <input type="password" class="login-input" id="admin-password" placeholder="password" autofocus>
+                <button type="submit" class="login-btn">
+                    <i class="fa-solid fa-right-to-bracket"></i> login
+                </button>
+            </form>
+            <div class="login-error" id="login-error"></div>
+        </div>
+    </div>
+
+    <!-- ===== ADMIN DASHBOARD ===== -->
+    <div class="admin-container" id="admin-dashboard">
+        <div class="admin-header">
+            <h1><i class="fa-solid fa-envelope-open-text"></i> Anonymous Messages</h1>
+            <div class="admin-actions">
+                <button class="admin-btn" onclick="refreshMessages()">
+                    <i class="fa-solid fa-refresh"></i> Refresh
+                </button>
+                <button class="admin-btn danger" onclick="logout()">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <div class="msg-count" id="msg-count"></div>
+
+        <div class="messages-list" id="messages-list">
+            <div class="loading-state">
+                <i class="fa-solid fa-spinner fa-spin"></i>
+                <p>Loading messages...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+
+    <script>
+        // ===== FIREBASE CONFIG =====
+        // 🔧 THAY THẾ BẰNG CONFIG CỦA BẠN (giống như trong index.html)
+        const firebaseConfig = {
+        apiKey: "AIzaSyAPW7Y5Kd_hptsN2Xm7PqdOuMgelMzAgk4",
+        authDomain: "privatemsg-3dd4b.firebaseapp.com",
+        projectId: "privatemsg-3dd4b",
+        storageBucket: "privatemsg-3dd4b.firebasestorage.app",
+        messagingSenderId: "1030230663700",
+        appId: "1:1030230663700:web:2024ba97b1eda2f7b0bd01",
+        measurementId: "G-WGVN5890G9"
+};
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+
+        // ===== ADMIN PASSWORD =====
+        // 🔧 ĐẶT EMAIL VÀ MẬT KHẨU FIREBASE AUTH CỦA BẠN
+        const ADMIN_EMAIL = "xinloi476@gmail.com";  // Email bạn đăng ký trên Firebase Auth
+        const DEFAULT_PASSWORD = "123456";
+
+        const loginForm = document.getElementById('login-form');
+        const loginError = document.getElementById('login-error');
+        const loginScreen = document.getElementById('login-screen');
+        const adminDashboard = document.getElementById('admin-dashboard');
+
+        // Check if already logged in
+        auth.onAuthStateChanged((user) => {
+            if (user && user.email === ADMIN_EMAIL) {
+                showDashboard();
+            }
+        });
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const password = document.getElementById('admin-password').value;
+
+            // Nếu dùng mật khẩu mặc định thì đăng nhập demo
+            if (password === DEFAULT_PASSWORD) {
+                loginError.textContent = '';
+                showDashboard();
+                return;
+            }
+
+            try {
+                await auth.signInWithEmailAndPassword(ADMIN_EMAIL, password);
+                loginError.textContent = '';
+                showDashboard();
+            } catch (error) {
+                loginError.textContent = 'Wrong password! Try again~ 🔒';
+                document.getElementById('admin-password').value = '';
+            }
+        });
+
+        function showDashboard() {
+            loginScreen.style.display = 'none';
+            adminDashboard.style.display = 'block';
+            loadMessages();
+        }
+
+        function logout() {
+            auth.signOut();
+            adminDashboard.style.display = 'none';
+            loginScreen.style.display = 'flex';
+            document.getElementById('admin-password').value = '';
+        }
+
+        // ===== LOAD MESSAGES =====
+        async function loadMessages() {
+            const listEl = document.getElementById('messages-list');
+            const countEl = document.getElementById('msg-count');
+
+            listEl.innerHTML = '<div class="loading-state"><i class="fa-solid fa-spinner fa-spin"></i><p>Loading messages...</p></div>';
+
+            try {
+                const snapshot = await db.collection('anonymous_messages')
+                    .orderBy('timestamp', 'desc')
+                    .get();
+
+                if (snapshot.empty) {
+                    listEl.innerHTML = '<div class="empty-state"><i class="fa-solid fa-inbox"></i><p>No messages yet~ 🌸</p></div>';
+                    countEl.textContent = '0 messages';
+                    return;
+                }
+
+                const unreadCount = snapshot.docs.filter(doc => !doc.data().read).length;
+                countEl.textContent = `${snapshot.size} message${snapshot.size > 1 ? 's' : ''} (${unreadCount} unread)`;
+
+                listEl.innerHTML = '';
+                snapshot.forEach((doc) => {
+                    const data = doc.data();
+                    const time = data.timestamp ? new Date(data.timestamp.toDate()).toLocaleString('vi-VN', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    }) : 'Just now';
+
+                    const card = document.createElement('div');
+                    card.className = `msg-card ${data.read ? '' : 'unread'}`;
+                    card.innerHTML = `
+                        <div class="msg-content">${escapeHtml(data.message)}</div>
+                        <div class="msg-meta">
+                            <div class="msg-time">
+                                <i class="fa-regular fa-clock"></i> ${time}
+                            </div>
+                            <div class="msg-actions">
+                                ${!data.read ? `<button class="msg-action-btn mark-read" onclick="markRead('${doc.id}', this)">
+                                    <i class="fa-solid fa-check"></i> Mark read
+                                </button>` : ''}
+                                <button class="msg-action-btn" onclick="deleteMessage('${doc.id}', this)">
+                                    <i class="fa-solid fa-trash"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    listEl.appendChild(card);
+                });
+            } catch (error) {
+                listEl.innerHTML = '<div class="empty-state"><i class="fa-solid fa-exclamation-triangle"></i><p>Failed to load messages. Check Firebase config.</p></div>';
+                console.error('Error loading messages:', error);
+            }
+        }
+
+        function refreshMessages() {
+            loadMessages();
+        }
+
+        async function markRead(docId, btnEl) {
+            try {
+                await db.collection('anonymous_messages').doc(docId).update({ read: true });
+                const card = btnEl.closest('.msg-card');
+                card.classList.remove('unread');
+                btnEl.remove();
+                // Update count
+                loadMessages();
+            } catch (error) {
+                console.error('Error marking read:', error);
+            }
+        }
+
+        async function deleteMessage(docId, btnEl) {
+            if (!confirm('Delete this message?')) return;
+            try {
+                await db.collection('anonymous_messages').doc(docId).delete();
+                const card = btnEl.closest('.msg-card');
+                card.style.opacity = '0';
+                card.style.transform = 'translateX(50px)';
+                card.style.transition = 'all 0.3s ease';
+                setTimeout(() => {
+                    card.remove();
+                    loadMessages();
+                }, 300);
+            } catch (error) {
+                console.error('Error deleting message:', error);
+            }
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+
+</body>
+</html>
