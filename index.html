@@ -123,9 +123,98 @@
             </a>-->
 
         </div>
+
+        <!-- ===== WIDGET GỬI TIN NHẮN ẨN DANH ===== -->
+        <div class="widget widget-anonymous-msg" id="anon-msg-widget">
+            <!-- Nội dung form bên trái -->
+            <div class="anon-msg-content">
+                <div class="anon-msg-header">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>gửi tin nhắn ẩn danh nè meow :3</span>
+                </div>
+                <form id="anon-msg-form" autocomplete="off">
+                    <textarea id="anon-msg-input" placeholder="" maxlength="500" rows="3"></textarea>
+                    <div class="anon-msg-footer">
+                        <span class="anon-msg-char-count"><span id="char-count">0</span>/500</span>
+                        <button type="submit" class="anon-msg-send-btn" id="anon-send-btn">
+                            <i class="fa-solid fa-paper-plane"></i> gửi tin nhắn tới mình nè ☆*: .｡. o(≧▽≦)o .｡.:*☆
+                        </button>
+                    </div>
+                </form>
+                <div class="anon-msg-status" id="anon-msg-status"></div>
+            </div>
+            <!-- Gif bên phải chìm vào trong widget -->
+            <div class="anon-msg-gif">
+                <img src="https://media1.tenor.com/m/UD5PBiKUOzEAAAAC/carlotta-bang.gif" alt="cute gif">
+            </div>
+        </div>
+
     </section>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
     <script>
+        // ===== FIREBASE CONFIG =====
+        // 🔧 BẠN CẦN THAY THẾ CÁC GIÁ TRỊ NÀY BẰNG CONFIG TỪ FIREBASE CONSOLE CỦA BẠN
+        const firebaseConfig = {
+        apiKey: "AIzaSyAPW7Y5Kd_hptsN2Xm7PqdOuMgelMzAgk4",
+        authDomain: "privatemsg-3dd4b.firebaseapp.com",
+        projectId: "privatemsg-3dd4b",
+        storageBucket: "privatemsg-3dd4b.firebasestorage.app",
+        messagingSenderId: "1030230663700",
+        appId: "1:1030230663700:web:2024ba97b1eda2f7b0bd01",
+        measurementId: "G-WGVN5890G9"
+};
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // ===== ANONYMOUS MESSAGE FORM =====
+        const anonForm = document.getElementById('anon-msg-form');
+        const anonInput = document.getElementById('anon-msg-input');
+        const anonStatus = document.getElementById('anon-msg-status');
+        const charCount = document.getElementById('char-count');
+        const sendBtn = document.getElementById('anon-send-btn');
+
+        anonInput.addEventListener('input', () => {
+            charCount.textContent = anonInput.value.length;
+        });
+
+        anonForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const message = anonInput.value.trim();
+            if (!message) return;
+
+            sendBtn.disabled = true;
+            sendBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+
+            try {
+                await db.collection('anonymous_messages').add({
+                    message: message,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    read: false
+                });
+
+                anonInput.value = '';
+                charCount.textContent = '0';
+                anonStatus.innerHTML = '<i class="fa-solid fa-check-circle"></i> Mình sẽ xem tin nhắn của bạn nhanh nhất có thể nhé, xincamon🌷';
+                anonStatus.className = 'anon-msg-status success';
+
+                setTimeout(() => {
+                    anonStatus.innerHTML = '';
+                    anonStatus.className = 'anon-msg-status';
+                }, 4000);
+            } catch (error) {
+                anonStatus.innerHTML = '<i class="fa-solid fa-exclamation-circle"></i> tính năng này lỗi òy mình sẽ sửa lại sau nhé :<.';
+                anonStatus.className = 'anon-msg-status error';
+            }
+
+            sendBtn.disabled = false;
+            sendBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send';
+        });
+
         // Cập nhật đồng hồ real-time
         function updateClock() {
             const now = new Date();
