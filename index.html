@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeiMei.dev</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&family=Fredoka+One&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="https://scontent.fhan20-1.fna.fbcdn.net/v/t39.30808-6/505596315_729592579426688_4576269832093091594_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHlWvYxDIKy9iJd06w3HFtOUiVsBGuuQtpSJWwEa65C2g2uvY_VhJoLBI7TIMYjCpxta5EIznBQTUEi4dSH_CvQ&_nc_ohc=bIM6iFGKm5AQ7kNvwF09_bI&_nc_oc=AdlasW5T5P5WGTzjsM0Xfeja4qRJbE4jopLZTukchpTosg8ppaPVYD_1TaPDa62KrQQ&_nc_zt=23&_nc_ht=scontent.fhan20-1.fna&_nc_gid=jfKLuvXl5XZj4lbm39b0PQ&_nc_ss=8&oh=00_Afsugp1H18jglBJ_XkS1a-Pi0wmK3lkg0zqW4mCcrE7FFA&oe=69A7E5FB">
+</head>
+<body>
+
+    <section class="page page-intro">
+        <div class="profile-container">
+            <img src="https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/483884036_665031045882842_6935605271122023384_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=53a332&_nc_eui2=AeFWF-SEN_3pvTyz4BSqNJlPq--org89OEmr76iuDz04SZBEIGwBknXSvXNMMDsM6X3reIGg9V9TLZooItsCK5rh&_nc_ohc=4YChJYZEzgAQ7kNvwFkJ55I&_nc_oc=AdnQSoyMrztE74UjcdmEUpg2GyHTfh4BlspTgjtbvEe2_GMk2IgIdMu5R17ydwRdLRE&_nc_zt=23&_nc_ht=scontent.fhan2-4.fna&_nc_gid=oUhTVR4Ifo-RYsnC93PR6A&oh=00_Afs5UKklTkKtFws0nEEoHL_TDE4jETsowbqwS2StADNQNw&oe=69A730DD" alt="my avt" class="avatar">
+            
+            <h1>Hoshina Meito 🌷</h1>
+            
+            <div class="description">
+                <p>I'm Hoshina Meito (you can call me Meimei), a Gamer ( cosplayer sometime (～￣▽￣)～ ) who loves anime, manga, novel :3</p>
+                <p>Here are a few of my favorite books: Letters to You, The Little Paris Bookshop, The Unwomanly Face of War, and Only Love Is Real</p>
+                <p>I currently reside and work in Japan. I can speak a little English (not good at English(┬┬﹏┬┬)) and Japanese also, my mother language is Vietnamese (❁´◡`❁)</p>
+                <p>Thank you for reading! Here is a cookie for you :3 meow~ 🍪</p>
+            </div>
+        </div>
+
+        <div class="scroll-down" onclick="document.querySelector('.page-widgets').scrollIntoView({behavior:'smooth'})">
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <section class="page page-widgets">
+        
+        <div class="widget widget-clock">
+            <div class="clock-background"></div>
+            <div class="clock-overlay">
+                <div class="clock-time" id="clock-time">18:04</div>
+                <div class="clock-day" id="clock-day">Friday</div>
+                <div class="clock-date" id="clock-date">27, Feb</div>
+            </div>
+        </div>
+
+        <div class="widgets-grid">
+
+            <div class="widget widget-status" id="discord-status-widget" style="background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('https://media1.tenor.com/m/EHmYNbeENZ8AAAAd/carlotta-carlotta-tea.gif'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+                <div class="status-header">
+                    <div class="status-avatar-wrapper">
+                        <img id="discord-avatar" src="https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/483884036_665031045882842_6935605271122023384_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=53a332&_nc_eui2=AeFWF-SEN_3pvTyz4BSqNJlPq--org89OEmr76iuDz04SZBEIGwBknXSvXNMMDsM6X3reIGg9V9TLZooItsCK5rh&_nc_ohc=4YChJYZEzgAQ7kNvwFkJ55I&_nc_oc=AdnQSoyMrztE74UjcdmEUpg2GyHTfh4BlspTgjtbvEe2_GMk2IgIdMu5R17ydwRdLRE&_nc_zt=23&_nc_ht=scontent.fhan2-4.fna&_nc_gid=Ad9PmMVbJvR3LIVwnjiTPQ&oh=00_AfttGDoj-wp1ZvC2CeNfV4yl4M1pBfchtE1ohcaU_n5ysQ&oe=69A7691D" alt="avatar" class="status-avatar">
+                        <span class="status-dot" id="discord-dot"></span>
+                    </div>
+                    <div class="status-info">
+                        <span class="status-name" id="discord-name">MEITO</span>
+                        <span class="status-state" id="discord-state">
+                            <i class="fa-solid fa-spinner fa-spin" style="font-size: 0.7rem;"></i> loading...
+                        </span>
+                    </div>
+                </div>
+                <p class="status-message" id="discord-activity">...</p>
+                <p class="status-custom-text">Tell me a heart warming story</p>
+            </div>
+
+            <div class="widget widget-image">
+                <img src="https://media1.tenor.com/m/6lISZEeGETcAAAAd/carlotta-wuwa.gif" alt="aesthetic gif">
+                <div class="image-textbox">
+                    <p>i'm not short!!!</p>
+                </div>
+            </div>
+
+            <div class="widget widget-link widget-discord">
+                <i class="fa-brands fa-discord"></i>
+                <span>Discord</span>
+                <div class="widget-sub">
+                    <a href="https://discord.gg/Y7PNc8ev" target="_blank" class="widget-sub-btn">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> join my server
+                    </a>
+                </div>
+            </div>
+
+            <div class="widget widget-link widget-facebook">
+                <i class="fa-brands fa-facebook"></i>
+                <span>Facebook</span>
+                <div class="widget-sub">
+                    <a href="https://www.facebook.com/hoshino.meito.2025/" target="_blank" class="widget-sub-btn">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> wanna addfr :3?
+                    </a>
+                </div>
+            </div>
+            
+            <div class="widget widget-music">
+                <div class="music-thumbnail" id="music-thumb-container">
+                    <img id="music-cover" src="https://media1.tenor.com/m/UD5PBiKUOzEAAAAC/carlotta-bang.gif" alt="Music Cover">
+                </div>
+                <div class="music-details">
+                    <p class="music-title" id="music-title">Loading...</p>
+                    <p class="music-artist" id="music-artist">...</p>
+                    <div class="music-controls">
+                        <button onclick="prevSong()" class="control-btn"><i class="fa-solid fa-backward-step"></i></button>
+                        <button onclick="togglePlay()" id="play-pause-btn" class="control-btn play-btn"><i class="fa-solid fa-play"></i></button>
+                        <button onclick="nextSong()" class="control-btn"><i class="fa-solid fa-forward-step"></i></button>
+                    </div>
+                </div>
+                <audio id="audio-player"></audio>
+            </div>
+
+        </div>
+
+        <div class="widget widget-anonymous-msg" id="anon-msg-widget">
+            <div class="anon-msg-content">
+                <div class="anon-msg-header">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>gửi tin nhắn ẩn danh nè meow :3</span>
+                    <span>send private message to me incase u want to (❁´◡`❁)</span>
+                </div>
+                <form id="anon-msg-form" autocomplete="off">
+                    <textarea id="anon-msg-input" placeholder="" maxlength="500" rows="3"></textarea>
+                    <div class="anon-msg-footer">
+                        <span class="anon-msg-char-count"><span id="char-count">0</span>/500</span>
+                        <button type="submit" class="anon-msg-send-btn" id="anon-send-btn">
+                            <i class="fa-solid fa-paper-plane"></i> click me to send message ☆*: .｡. o(≧▽≦)o .｡.:*☆
+                        </button>
+                    </div>
+                </form>
+                <div class="anon-msg-status" id="anon-msg-status"></div>
+            </div>
+            <div class="anon-msg-gif">
+                <img src="https://media1.tenor.com/m/UD5PBiKUOzEAAAAC/carlotta-bang.gif" alt="cute gif">
+            </div>
+        </div>
+
+    </section>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        // ===== FIREBASE CONFIG =====
+        const firebaseConfig = {
+        apiKey: "AIzaSyAPW7Y5Kd_hptsN2Xm7PqdOuMgelMzAgk4",
+        authDomain: "privatemsg-3dd4b.firebaseapp.com",
+        projectId: "privatemsg-3dd4b",
+        storageBucket: "privatemsg-3dd4b.firebasestorage.app",
+        messagingSenderId: "1030230663700",
+        appId: "1:1030230663700:web:2024ba97b1eda2f7b0bd01",
+        measurementId: "G-WGVN5890G9"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // ===== ANONYMOUS MESSAGE FORM =====
+        const anonForm = document.getElementById('anon-msg-form');
+        const anonInput = document.getElementById('anon-msg-input');
+        const anonStatus = document.getElementById('anon-msg-status');
+        const charCount = document.getElementById('char-count');
+        const sendBtn = document.getElementById('anon-send-btn');
+
+        anonInput.addEventListener('input', () => {
+            charCount.textContent = anonInput.value.length;
+        });
+
+        anonForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const message = anonInput.value.trim();
+            if (!message) return;
+
+            sendBtn.disabled = true;
+            sendBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+
+            try {
+                await db.collection('anonymous_messages').add({
+                    message: message,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    read: false
+                });
+
+                anonInput.value = '';
+                charCount.textContent = '0';
+                anonStatus.innerHTML = '<i class="fa-solid fa-check-circle"></i> Mình sẽ xem tin nhắn của bạn nhanh nhất có thể nhé, xincamon🌷';
+                anonStatus.className = 'anon-msg-status success';
+
+                setTimeout(() => {
+                    anonStatus.innerHTML = '';
+                    anonStatus.className = 'anon-msg-status';
+                }, 4000);
+            } catch (error) {
+                anonStatus.innerHTML = '<i class="fa-solid fa-exclamation-circle"></i> tính năng này lỗi òy mình sẽ sửa lại sau nhé :<.';
+                anonStatus.className = 'anon-msg-status error';
+            }
+
+            sendBtn.disabled = false;
+            sendBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send';
+        });
+
+        // ===== CLOCK WIDGET =====
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+            const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+            document.getElementById('clock-time').textContent = hours + ':' + minutes;
+            document.getElementById('clock-day').textContent = days[now.getDay()];
+            document.getElementById('clock-date').textContent = now.getDate() + ', ' + months[now.getMonth()];
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // ===== LANYARD DISCORD PRESENCE =====
+        const DISCORD_USER_ID = '1239181166188429364';
+
+        const statusLabels = { online: 'Online', idle: 'Idle', dnd: 'Do Not Disturb', offline: 'Offline' };
+
+        function updateDiscordPresence(data) {
+            const dotEl = document.getElementById('discord-dot');
+            const stateEl = document.getElementById('discord-state');
+            const activityEl = document.getElementById('discord-activity');
+            const avatarEl = document.getElementById('discord-avatar');
+            const nameEl = document.getElementById('discord-name');
+            const widgetEl = document.getElementById('discord-status-widget');
+
+            if (data.discord_user) {
+                const user = data.discord_user;
+                if (user.avatar) {
+                    avatarEl.src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=128`;
+                }
+                nameEl.textContent = user.display_name || user.global_name || user.username;
+            }
+
+            const status = data.discord_status || 'offline';
+            dotEl.className = 'status-dot status-' + status;
+            stateEl.innerHTML = '<span class="status-dot-inline status-' + status + '"></span> ' + statusLabels[status];
+            widgetEl.setAttribute('data-status', status);
+
+            if (data.activities && data.activities.length > 0) {
+                const activity = data.activities.find(a => a.type !== 4) || data.activities[0];
+                if (activity.type === 4) {
+                    activityEl.textContent = activity.state || "I'm chilling right now meow:3~🍡'";
+                } else if (activity.type === 0) {
+                    activityEl.innerHTML = '<i class="fa-solid fa-gamepad"></i> Playing <strong>' + activity.name + '</strong>';
+                    if (activity.details) activityEl.innerHTML += '<br><small>' + activity.details + '</small>';
+                } else if (activity.type === 2) {
+                    activityEl.innerHTML = '<i class="fa-solid fa-music"></i> Listening to <strong>' + activity.name + '</strong>';
+                    if (activity.details) activityEl.innerHTML += ' — ' + activity.details;
+                } else if (activity.type === 1) {
+                    activityEl.innerHTML = '<i class="fa-solid fa-tower-broadcast"></i> Streaming <strong>' + activity.name + '</strong>';
+                } else if (activity.type === 3) {
+                    activityEl.innerHTML = '<i class="fa-solid fa-tv"></i> Watching <strong>' + activity.name + '</strong>';
+                } else if (activity.type === 5) {
+                    activityEl.innerHTML = '<i class="fa-solid fa-trophy"></i> Competing in <strong>' + activity.name + '</strong>';
+                } else {
+                    activityEl.textContent = activity.state || activity.name || 'No activity';
+                }
+            } else if (data.activities && data.activities.length === 0) {
+                if (status === 'offline') {
+                    activityEl.textContent = 'Currently offline';
+                } else {
+                    activityEl.textContent = 'Just chilling~ ☕';
+                }
+            }
+        }
+
+        function connectLanyard() {
+            const ws = new WebSocket('wss://api.lanyard.rest/socket');
+            ws.onmessage = function(event) {
+                const msg = JSON.parse(event.data);
+                if (msg.op === 1) {
+                    ws.send(JSON.stringify({ op: 2, d: { subscribe_to_id: DISCORD_USER_ID } }));
+                    setInterval(() => { ws.send(JSON.stringify({ op: 3 })); }, msg.d.heartbeat_interval);
+                }
+                if (msg.op === 0) {
+                    updateDiscordPresence(msg.d);
+                }
+            };
+            ws.onclose = function() { setTimeout(connectLanyard, 5000); };
+            ws.onerror = function() { ws.close(); };
+        }
+
+        fetch('https://api.lanyard.rest/v1/users/' + DISCORD_USER_ID)
+            .then(r => r.json())
+            .then(res => { if (res.success) updateDiscordPresence(res.data); })
+            .catch(() => {});
+
+        connectLanyard();
+        // ===== CUSTOM MUSIC PLAYER =====
+        const playlist = [
+            {
+                title: "リインカーネーション",
+                artist: "ロクデナシ",
+                src: "./music/ロクデナシリインカーネーション Rokudenashi - ReincarnationOfficial Music Video.mp3",
+                cover: "https://media1.tenor.com/m/SaTUP7N1Sd0AAAAd/wuthering-waves-wuwa.gif"
+            },
+            {
+                title: "ユリイカ",
+                artist: "ロクデナシ",
+                src: "./music/ロクデナシユリイカ Rokudenashi - EurekaOfficial Music Video.mp3",
+                cover: "https://media1.tenor.com/m/SaTUP7N1Sd0AAAAd/wuthering-waves-wuwa.gif"
+            },
+            {
+              title : "桜",
+              artist : "Myuk",
+              src : "./music/Myuk-Sakura(MusicVideo).mp3",
+              cover : "https://media1.tenor.com/m/SaTUP7N1Sd0AAAAd/wuthering-waves-wuwa.gif"
+            },
+            {
+                title : "это ли счастье?",
+                artist : "Rauf & Faik",
+                src : "./music/Rauf & Faik   это ли счастье_ (Official Audio).mp3",
+                cover : "https://media1.tenor.com/m/SaTUP7N1Sd0AAAAd/wuthering-waves-wuwa.gif"
+            }
+        ];
+
+        let currentSongIndex = 0;
+        const audio = document.getElementById('audio-player');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const musicThumbContainer = document.getElementById('music-thumb-container');
+        const musicTitle = document.getElementById('music-title');
+        const musicArtist = document.getElementById('music-artist');
+        const musicCover = document.getElementById('music-cover');
+
+        // Hàm tải thông tin bài hát
+        function loadSong(index) {
+            const song = playlist[index];
+            audio.src = song.src;
+            musicTitle.textContent = song.title;
+            musicArtist.textContent = song.artist;
+            musicCover.src = song.cover;
+        }
+
+        // Hàm ép buộc phát nhạc và cập nhật giao diện (nút bấm, đĩa quay)
+        function playSong() {
+            audio.play();
+            playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+            musicThumbContainer.classList.add('playing');
+        }
+
+        // Hàm dừng nhạc và cập nhật giao diện
+        function pauseSong() {
+            audio.pause();
+            playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+            musicThumbContainer.classList.remove('playing');
+        }
+
+        // Nút bấm Play/Pause
+        function togglePlay() {
+            if (audio.paused) {
+                playSong();
+            } else {
+                pauseSong();
+            }
+        }
+
+        // Chuyển bài tiếp theo
+        function nextSong() {
+            currentSongIndex = (currentSongIndex + 1) % playlist.length;
+            loadSong(currentSongIndex);
+            playSong(); // Gọi hàm playSong để tự động phát luôn
+        }
+
+        // Quay lại bài trước
+        function prevSong() {
+            currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
+            loadSong(currentSongIndex);
+            playSong(); // Gọi hàm playSong để tự động phát luôn
+        }
+
+        // Tự động chuyển bài khi hết nhạc
+        audio.addEventListener('ended', () => {
+            nextSong();
+        });
+
+        // Load bài hát đầu tiên khi vừa vào web
+        loadSong(currentSongIndex);
+    </script>
+
+</body>
+</html>
